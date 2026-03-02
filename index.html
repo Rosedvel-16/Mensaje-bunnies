@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje Blue Bunnies</title>
+    <style>
+        /* ====== VARIABLES DE COLOR ====== */
+        :root {
+            --bg-gradient-start: #6a82fb;
+            --bg-gradient-end: #fc5c7d;
+            --text-dark: #333;
+            --text-gray: #666;
+            --purple-main: #7e22ce;
+            --pink-accent: #db2777;
+            --blue-highlight: #2563eb;
+            --box-bg-purple: #fdf4ff;
+            --box-border-purple: #f0abfc;
+            --box-bg-blue: #f0f9ff;
+            --box-border-blue: #3b82f6;
+        }
+
+        /* ====== ESTILOS BASE ====== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 10px;
+        }
+
+        /* ====== TARJETA PRINCIPAL ====== */
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 450px; /* Tamaño ideal para simular móvil en PC */
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        /* ====== CABECERA (Imagen y Título) ====== */
+        .header {
+            /* Usando una imagen representativa de un festival/calle japonesa de noche */
+            background-image: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1542051812-ba32e0085215?q=80&w=800&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            padding: 40px 20px 20px 20px;
+            display: flex;
+            align-items: flex-end;
+            gap: 15px;
+            color: white;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            background-color: #8b5cf6;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .header-info h1 {
+            font-size: 1.4rem;
+            margin-bottom: 2px;
+        }
+
+        .header-info p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* ====== CUERPO DE LA TARJETA ====== */
+        .content {
+            padding: 25px;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .main-title {
+            color: var(--purple-main);
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+        }
+
+        .bold-blue {
+            color: var(--blue-highlight);
+            font-weight: 600;
+        }
+
+        .bold-pink {
+            color: var(--pink-accent);
+            font-weight: bold;
+        }
+
+        /* ====== CAJA DE ÉNFASIS (¡QUIERO DEBUTAR!) ====== */
+        .debut-box {
+            background-color: var(--box-bg-purple);
+            border: 2px solid var(--box-border-purple);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(240, 171, 252, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .debut-box h2 {
+            color: var(--purple-main);
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .debut-box p {
+            color: var(--purple-main);
+            font-size: 0.85rem;
+            margin-bottom: 0;
+            opacity: 0.8;
+        }
+
+        /* Animación para enfatizar */
+        @keyframes pulse-glow {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(126, 34, 206, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 20px 0 rgba(126, 34, 206, 0.2); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(126, 34, 206, 0); }
+        }
+        .animate-pulse {
+            animation: pulse-glow 2s infinite;
+        }
+
+        /* ====== CAJA DE RECUERDOS (Lista) ====== */
+        .reminders-box {
+            background-color: var(--box-bg-blue);
+            border-left: 4px solid var(--box-border-blue);
+            border-radius: 0 12px 12px 0;
+            padding: 15px 20px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        .reminders-title {
+            color: var(--blue-highlight);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reminders-box ul {
+            list-style: none;
+        }
+
+        .reminders-box li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        /* ====== FOOTER ====== */
+        .footer-text {
+            text-align: center;
+            color: var(--purple-main);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 15px 0;
+        }
+
+        .icons-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+        }
+        
+        /* Efecto decorativo de fondo en la esquina inferior */
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(240,249,255,1) 0%, rgba(255,255,255,0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .content { position: relative; z-index: 1; }
+    </style>
+</head>
+<body>
+
+    <main class="card">
+        <header class="header">
+            <div class="avatar">🐰</div>
+            <div class="header-info">
+                <h1>Blue Bunnies</h1>
+                <p>K pop Dance Crew</p>
+            </div>
+        </header>
+
+        <section class="content">
+            <h2 class="main-title">✨ ¡Un mensaje importante, Bunnies! 💜</h2>
+            
+            <p>Queridas chicas de <span class="bold-blue">Blue Bunnies</span>,</p>
+            
+            <p>Sé que están considerando cancelar la coreografía, pero quiero que sepan algo muy importante...</p>
+
+            <div class="debut-box animate-pulse" id="debutBox">
+                <h2>✨ ¡QUIERO DEBUTAR! ✨</h2>
+                <p>Y necesito que ustedes estén conmigo en este sueño</p>
+            </div>
+
+            <p>Así que aquí va mi mensaje: Si es necesario, <span class="bold-pink">¡llamen a su mamá a bailar! 💃</span></p>
+            
+            <p style="font-size: 0.85rem; color: #555;">No dejen que nada nos detenga. Hemos trabajado demasiado duro para rendirnos ahora. Cada paso, cada movimiento, cada ensayo nos acerca más a nuestro sueño.</p>
+
+            <div class="reminders-box">
+                <div class="reminders-title">💙 Recuerden:</div>
+                <ul>
+                    <li>⭐ Somos un equipo y juntas somos imparables</li>
+                    <li>💗 Nuestra pasión por el K-pop es lo que nos une</li>
+                    <li>✨ El debut que soñamos está cada vez más cerca</li>
+                </ul>
+            </div>
+
+            <div class="footer-text">
+                ¡Blue Bunnies, fighting! 🐰 💜 ✨
+            </div>
+            
+            <hr class="divider">
+            
+            <div class="icons-row">
+                <span>🐰</span>
+                <span>💜</span>
+                <span>✨</span>
+                <span>🎵</span>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // JS para enfatizar aún más la caja de Debut al interactuar con ella
+        document.addEventListener('DOMContentLoaded', () => {
+            const debutBox = document.getElementById('debutBox');
+            
+            // Al hacer clic, hace un efecto de "latido" fuerte
+            debutBox.addEventListener('click', () => {
+                // Quitamos la clase infinita momentáneamente
+                debutBox.classList.remove('animate-pulse');
+                
+                // Aplicamos un escalado por JS
+                debutBox.style.transform = 'scale(1.1)';
+                debutBox.style.boxShadow = '0 10px 25px rgba(126, 34, 206, 0.5)';
+                debutBox.style.backgroundColor = '#fae8ff';
+                
+                // Restauramos después de medio segundo
+                setTimeout(() => {
+                    debutBox.style.transform = '';
+                    debutBox.style.boxShadow = '';
+                    debutBox.style.backgroundColor = '';
+                    debutBox.classList.add('animate-pulse');
+                }, 400);
+            });
+        });
+    </script>
+</body>
+</html>
